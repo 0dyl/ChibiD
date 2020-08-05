@@ -1,5 +1,7 @@
 module chibid.rt.chsystypes;
 
+import chibid.port;
+
 alias thread_t = ch_thread;
 alias thread_reference_t = thread_t*;
 alias threads_list_t = ch_threads_list;

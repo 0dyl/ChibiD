@@ -1,5 +1,7 @@
 module chibid.rt.chtime;
 
+import chibid.port;
+
 enum CH_CFG_ST_RESOLUTION = 32;
 enum CH_CFG_ST_FREQUENCY = 100;
 enum CH_CFG_INTERVALS_SIZE = 32;
@@ -27,7 +29,9 @@ alias time_msecs_t = uint;
 alias time_usecs_t = uint;
 alias time_conv_t = ulong;
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 sysinterval_t chTimeS2I(time_secs_t secs);
 sysinterval_t chTimeMS2I(time_msecs_t msec);
 sysinterval_t chTimeUS2I(time_usecs_t usec);

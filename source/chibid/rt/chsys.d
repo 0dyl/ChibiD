@@ -1,5 +1,7 @@
 module chibid.rt.chsys;
 
+import chibid.port;
+
 auto chSysGetRealtimeCounterX() { return port_rt_get_counter_value(); }
 
 enum CH_INTEGRITY
@@ -17,7 +19,9 @@ auto RTC2S(auto freq, auto n) { return ((((n) - 1UL) / (freq)) + 1UL); }
 auto RTC2MS(auto freq, auto n) { return ((((n) - 1UL) / ((freq) / 1000UL)) + 1UL); }
 auto RTC2US(auto freq, auto n) { return ((((n) - 1UL) / ((freq) / 1000000UL)) + 1UL); }
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chSysInit();
 bool chSysIntegrityCheckI(uint testmask);
 void chSysTimerHandlerI();

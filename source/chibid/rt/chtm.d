@@ -1,5 +1,7 @@
 module chibid.rt.chtm;
 
+import chibid.port;
+
 struct tm_calibration_t
 {
     rtcnt_t offset;
@@ -14,7 +16,9 @@ struct time_measurement_t
     rttime_t cumulative;
 }
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chTMObjectInit(time_measurement_t* tmp);
 void chTMStartMeasurementX(time_measurement_t* tmp);
 void chTMStopMeasurementX(time_measurement_t* tmp);

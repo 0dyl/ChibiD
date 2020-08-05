@@ -1,5 +1,6 @@
 module chibid.rt.chbsem;
 
+import chibid.port;
 import chibid.rt.chtime;
 
 struct ch_binary_semaphore
@@ -10,7 +11,9 @@ struct ch_binary_semaphore
 
 alias binary_semaphore_t = ch_binary_semaphore;
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chBSemObjectInit(binary_semaphore_t* bsp, bool taken);
 msg_t chBSemWait(binary_semaphore_t* bsp);
 msg_t chBSemWaitS(binary_semaphore_t* bsp);

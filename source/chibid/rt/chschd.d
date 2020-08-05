@@ -1,5 +1,7 @@
 module chibid.rt.chschd;
 
+import chibid.port;
+
 struct ch_threads_list
 {
     thread_t* next;
@@ -118,4 +120,6 @@ enum tmode_t CH_FLAG_MODE_HEAP = 1;
 enum tmode_t CH_FLAG_MODE_MPOOL = 2;
 enum tmode_t CH_FLAG_TERMINATE = 4;
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):

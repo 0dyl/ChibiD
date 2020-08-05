@@ -15,7 +15,6 @@ struct thread_descriptor_t
 
 auto THD_WORKING_AREA_SIZE(auto n) { 
     return MEM_ALIGN_TEXT(thread_t.sizeof + PORT_WA_SIZE(n), PORT_STACK_ALIGN); }
-auto THD_WORKING_AREA(auto s, auto n) { return PORT_WORKING_AREA(s, n); }
 auto THD_WORKING_AREA_BASE(auto s) { return cast(stkalign_t*)s;}
 auto THD_WORKING_AREA_END(auto s) { return WORKING_AREA_BASE(s) + s.sizeof / stkalign.sizeof; }
 auto THD_FUNCTION(auto tname, auto arg) { return PORT_THD_FUNCTION(tname, arg); }
@@ -26,6 +25,9 @@ void chThdSleepMicroseconds(time_usecs_t usec) { chThdSleep(TIME_US2I(usec)); }
 
 alias tfunc_t = void function(void* p);
 
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 thread_t* chThdCreateSuspendedI(const thread_descriptor_t* tdp);
 thread_t* chThdCreateSuspended(const thread_descriptor_t* tdp);
 thread_t* chThdCreateI(const thread_descriptor_t *tdp);

@@ -9,6 +9,9 @@ struct condition_variable
 
 alias condition_variable_t = condition_variable;
 
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chCondObjectInit(condition_variable_t* cp);
 void chCondSignal(condition_variable_t* cp);
 void chCondSignalI(condition_variable_t* cp);

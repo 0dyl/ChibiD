@@ -13,5 +13,7 @@ enum TRUE = 1;
 // MACROS
 
 // BINDINGS
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chSysHalt(const char * reason);

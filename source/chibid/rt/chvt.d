@@ -1,6 +1,10 @@
 module chibid.rt.chvt;
 
-extern(C):
+import chibid.port;
+
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chVTDoSetI(virtual_timer_t* vtp, sysinterval_t delay, vtfunc_t vtfunc, void* par);
 void chVTDoResetI(virtual_timer_t* vtp);
 void chVTObjectInit(virtual_timer_t* vtp);

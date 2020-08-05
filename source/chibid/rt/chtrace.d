@@ -1,5 +1,7 @@
 module chibid.rt.chtrace;
 
+import chibid.port;
+
 struct ch_trace_event_t
 {
     uint type_state_rtstamp;
@@ -66,7 +68,9 @@ enum CH_DBG_TRACE_MASK_ALL;
 enum CH_DBG_TRACE_MASK = CH_DBG_TRACE_MASK_DISABLED;
 enum CH_DBG_TRACE_BUFFER_SIZE = 128;
 
-extern(C):
+version(USE_CPP)
+    extern(C++):
+else extern(C):
 void chDbgWriteTraceI(void* up1, void* up2);
 void chDbgWriteTrace(void* up1, void* up2);
 void chDbgSuspendTraceI(ushort mask);
