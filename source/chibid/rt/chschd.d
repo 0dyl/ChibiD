@@ -88,3 +88,34 @@ auto firstprio(auto rlp) { return rlp.next.prio; }
 enum msg_t MSG_OK = 0;
 enum msg_t MSG_TIMEOUT = cast(msg_t)(-1);
 enum msg_t MSG_RESET = cast(msg_t)(-2);
+
+enum NOPRIO = 0;
+enum IDLEPRIO = 1;
+enum LOWPRIO = 2;
+enum NORMALPRIO = 128;
+enum HIGHPRIO = 255;
+
+enum tstate_t CH_STATE_READY = 0;
+enum tstate_t CH_STATE_CURRENT = 1;
+enum tstate_t CH_STATE_WTSTART = 2;
+enum tstate_t CH_STATE_SUSPENDED = 3;
+enum tstate_t CH_STATE_QUEUED = 4;
+enum tstate_t CH_STATE_WTSEM = 5;
+enum tstate_t CH_STATE_WTMTX = 6;
+enum tstate_t CH_STATE_WTCOND = 7;
+enum tstate_t CH_STATE_SLEEPING = 8;
+enum tstate_t CH_STATE_WTEXIT = 9;
+enum tstate_t CH_STATE_WTOREVT = 10;
+enum tstate_t CH_STATE_WTANDEVT = 11;
+enum tstate_t CH_STATE_SNDMSGQ = 12;
+enum tstate_t CH_STATE_SNGMSG = 13;
+enum tstate_t CH_STATE_WTMSG = 14;
+enum tstate_t CH_STATE_FINAL = 15;
+
+enum tmode_t CH_FLAG_MODE_MASK = 3;
+enum tmode_t CH_FLAG_MODE_STATIC = 0;
+enum tmode_t CH_FLAG_MODE_HEAP = 1;
+enum tmode_t CH_FLAG_MODE_MPOOL = 2;
+enum tmode_t CH_FLAG_TERMINATE = 4;
+
+extern(C):
